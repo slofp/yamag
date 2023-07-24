@@ -3,3 +3,6 @@
 /dist
 .vscode
 *.env.template.local
+
+/data
+.env

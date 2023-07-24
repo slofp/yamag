@@ -1,0 +1,12 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:15.3-bullseye
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=yamag
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - ./data:/var/lib/postgresql/data
