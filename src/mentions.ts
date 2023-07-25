@@ -66,6 +66,8 @@ const getStatics = async (u:Misskey.entities.User) => {
   const stream = new Misskey.Stream(Config.server.origin, { token: Config.server.credential }, { WebSocket })
   const mainChannel = stream.useChannel('main')
   mainChannel.on('mention', async note => {
+    const nowDate = Date.now()
+    if (nowDate > (Config.recordTime.getTime() - (70 * 1000)) && nowDate < (Config.recordTime.getTime() + (70 * 1000))) return;
     if (isUserDetailed(note.user) && note.user?.isBot === false) {
       if (note.userId === note.reply?.userId) {
         if(note.reply?.text?.match(Config.matcher)) {
