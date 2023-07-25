@@ -28,6 +28,11 @@ pnpm
   - `pnpm start`
 - 集計結果がノートされる
 
+### Dockerの場合
+- `.env`を記述する
+- (初回のみ) `docker compose run -it app pnpm run init`を実行
+- `docker compose up -d`を実行
+
 ### 集計開始ノートを投稿する
 - `pnpm run remind`
 

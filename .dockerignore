@@ -1,0 +1,11 @@
+node_modules/
+data/
+dist/
+.env.template
+/.git
+/.vscode
+docker-compose.yml
+Dockerfile
+.gitignore
+.dockerignore
+build-script.sh
