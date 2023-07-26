@@ -1,9 +1,18 @@
-FROM node:20.5.0-bullseye
+FROM node:18.17.0-bullseye
 
-WORKDIR /yamag
+WORKDIR /
 
-COPY ./ ./
+# Install pnpm
+RUN npm i -g pnpm
 
-RUN npm i -g pnpm && pnpm i && pnpm build
+# Files required by pnpm install
+COPY package.json pnpm-lock.yaml ./
 
-CMD ["pnpm", "run", "mentions"]
+RUN pnpm install --frozen-lockfile
+
+# Bundle app source
+COPY . .
+
+RUN pnpm build
+
+CMD [ "pnpm", "run", "mentions" ]

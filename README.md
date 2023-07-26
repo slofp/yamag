@@ -1,4 +1,4 @@
-# YAAGM: Yet Another Accuracy Game for Misskey
+# YAMAG: Yet Another Misskey Accuracy Game app
 
 ## What's this app
 これは「334」のような特定の時間に対しての投稿時間の精度を図るようなゲームの集計を行うアプリです。
@@ -16,7 +16,7 @@
 ## How to use
 ### 前提
 ```
-Node js v18.16.0
+Node js v18.17.0
 pnpm
 ```
 - `pnpm install`(依存関係のインストール)
