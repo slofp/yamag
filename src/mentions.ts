@@ -67,7 +67,10 @@ const getStatics = async (u:Misskey.entities.User) => {
   const mainChannel = stream.useChannel('main')
   mainChannel.on('mention', async note => {
     const nowDate = Date.now()
-    if (nowDate > (Config.recordTime.getTime() - (70 * 1000)) && nowDate < (Config.recordTime.getTime() + (70 * 1000))) return;
+    if (nowDate > (Config.recordTime.getTime() - (70 * 1000)) && nowDate < (Config.recordTime.getTime() + (70 * 1000))) {
+      YAMAG.Misskey.request('notes/reactions/create', { noteId: note.id, reaction: "❌" })
+      return
+    }
     if (isUserDetailed(note.user) && note.user?.isBot === false) {
       if (note.userId === note.reply?.userId) {
         if(note.reply?.text?.match(Config.matcher)) {
