@@ -4,22 +4,21 @@ services:
     build: .
     restart: always
     links:
-      - postgres
+      - db
     networks:
       - int_net
       - ext_net
-  postgres:
+    env_file:
+      - .env.app
+  db:
     image: postgres:15.3-bullseye
     networks:
       - int_net
-    environment:
-      - POSTGRES_DB=yamag
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+    env_file:
+      - .env.db
     volumes:
       - ./data:/var/lib/postgresql/data
 networks:
   int_net:
     internal: true
   ext_net:
-    
