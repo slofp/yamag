@@ -26,6 +26,9 @@ async function main() {
       }
     }
   }
+  else {
+    console.log("No Post.", currentDiff);
+  }
 }
 
 main()
