@@ -1,8 +1,8 @@
 import YAMAG from '@/utils/misskey'
-import { recordTime, remindPostText } from '@/utils/config'
+import { remindPostText, remindTime } from '@/utils/config'
 
 let now = new Date()
-const getTimeDiff = ():number => recordTime.getTime() - new Date().getTime();
+const getTimeDiff = ():number => remindTime.getTime() - new Date().getTime();
 
 const MAX_RETRY_COUNT = 3
 
