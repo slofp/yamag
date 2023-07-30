@@ -9,7 +9,7 @@ const MAX_RETRY_COUNT = 3
 async function main() {
   console.log("Remind Post Script Launched")
   let currentDiff = getTimeDiff()
-  if (20 * 1000 <= currentDiff || currentDiff < 5 * 60 * 1000) {
+  if (20 * 1000 <= currentDiff && currentDiff < 5 * 60 * 1000) {
     while (getTimeDiff() > 58.5 * 1000) {
       await new Promise(resolve => setTimeout(resolve, 50))
     }
