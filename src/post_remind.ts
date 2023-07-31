@@ -1,10 +1,17 @@
 import YAMAG from '@/utils/misskey'
-import { remindPostText, remindTime } from '@/utils/config'
+import { recordTime, remindPostText } from '@/utils/config'
 
-let now = new Date()
-const getTimeDiff = ():number => remindTime.getTime() - new Date().getTime();
+const getTimeDiff = ():number => {
+  let target = recordTime
 
-const MAX_RETRY_COUNT = 3
+  if (target.getTime() < new Date().getTime()) {
+    target.setDate(target.getDate() + 1)
+  }
+
+  return recordTime.getTime() - new Date().getTime();
+}
+
+const MAX_RETRY_COUNT = 3;
 
 async function main() {
   console.log("Remind Post Script Launched")
@@ -16,7 +23,7 @@ async function main() {
     console.log(new Date())
     for (let i = 0; i < MAX_RETRY_COUNT; i++) {
       try {
-        await YAMAG.Misskey.postNote(`${remindPostText}(${now.toLocaleDateString('ja-JP')})`)
+        await YAMAG.Misskey.postNote(`${remindPostText}(${new Date().toLocaleDateString('ja-JP')} -> ${recordTime.toLocaleDateString('ja-JP')})`)
         break
       }
       catch (err) {
@@ -27,7 +34,7 @@ async function main() {
     }
   }
   else {
-    console.log("No Post.", currentDiff);
+    console.log("No Post.", currentDiff)
   }
 }
 
