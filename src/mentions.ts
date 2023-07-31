@@ -94,6 +94,8 @@ const getStatics = async (u:Misskey.entities.User) => {
         } else if (note.text?.match(/\/unfollow/)) {
           await YAMAG.Misskey.request('following/delete', { userId: note.userId })
           YAMAG.Misskey.request('notes/reactions/create', { noteId: note.id, reaction: "👋" })
+        } else if (note.text?.match(/\/ping/)) {
+          YAMAG.Misskey.request('notes/reactions/create', { noteId: note.id, reaction: "✅" })
         } else {
           let text = await getStatics(note.user)
           if (text !== undefined) YAMAG.Misskey.postNote(text, { replyId: note.id })
