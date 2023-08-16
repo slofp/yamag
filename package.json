@@ -4,9 +4,9 @@
   "description": "Yet Another Misskey Accuracy Game app",
   "main": "index.js",
   "scripts": {
-    "start": "node ./dist/index.js",
-    "remind": "node ./dist/post_remind.js",
-    "mentions": "node ./dist/mentions.js",
+    "start": "node --dns-result-order=ipv4first ./dist/index.js",
+    "remind": "node --dns-result-order=ipv4first ./dist/post_remind.js",
+    "mentions": "node --dns-result-order=ipv4first ./dist/mentions.js",
     "build": "tsc && tsc-alias",
     "build:watch": "tsc && (concurrently \"tsc -w\" \"tsc-alias -w\")",
     "test": "echo \"Error: no test specified\" && exit 1",
