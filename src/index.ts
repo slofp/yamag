@@ -140,7 +140,10 @@ const getNotes = async ():Promise<Array<Note>> => {
   notes = await getNotes()
   console.log("getNotes end")
 
-  let regexp = new RegExp(Config.matcher)
+  const today = new Date()
+  const todayMonth = today.getMonth() + 1
+  const todayDate = today.getDate()
+  let regexp = new RegExp(`(${Config.matcher}|${todayMonth}/${todayDate}|${todayMonth}月${todayDate}日)`)
   let recordedNotes = notes.filter(note => note.text?.match(regexp))
   let filteredNotes = recordedNotes.filter(note => {
     return !['334', Config.userName].includes(note.user.username) &&

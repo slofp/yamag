@@ -81,7 +81,7 @@ const getStatics = async (u:Misskey.entities.User) => {
 
     if (isUserDetailed(note.user) && note.user?.isBot === false) {
       if (note.userId === note.reply?.userId) {
-        if(note.reply?.text?.match(Config.matcher)) {
+        if(note.reply?.text?.match(`(${Config.matcher})`) || note.reply?.text?.match(`([1-9]|1[0-2])/([1-9]|[12][0-9]|3[01])`) || note.reply?.text?.match(`([1-9]|1[0-2])月([1-9]|[12][0-9]|3[01])日`)) {
           YAMAG.Misskey.request('notes/reactions/create', { noteId: note.id, reaction: "👍" })
           let text = await getRecordTxt(note.reply) || await getTimeTxt(note.reply)
           YAMAG.Misskey.postNote(text, { replyId: note.id })
