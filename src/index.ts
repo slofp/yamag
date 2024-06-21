@@ -148,7 +148,8 @@ const getNotesUsingUntil = async ():Promise<Array<Note>> => {
   const since = Config.recordTime.getTime() - (60 * 1000)
   const until = Config.recordTime.getTime() + (60 * 1000)
   const options = {
-    excludeNsfw: false,
+    withRenotes: false,
+    withReplies: false,
     limit: 100,
     untilDate: until
   }
